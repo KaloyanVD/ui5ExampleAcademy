@@ -1,6 +1,6 @@
-sap.ui.define([
+sap.ui.define(
+	[
 	"sap/ui/core/mvc/Controller",
-	
 	"sap/m/MessageToast",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/Fragment"
@@ -17,6 +17,7 @@ onInit: function () {
 				};
 				var model = new JSONModel(data);
 				this.getView().setModel(model);
+				var productsModel = this.getView().getModel('productsModel');
 			},
 			
 		onShowHello : function () {
