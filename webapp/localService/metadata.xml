@@ -1,0 +1,78 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZKPMGSHOP_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="Shops" sap:content-version="1">
+				<Key><PropertyRef Name="Shop"/></Key><Property Name="Shop" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Shop Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Manager" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Manager Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Employees" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Employees" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Revenue" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Revenue" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Items" sap:content-version="1">
+				<Key><PropertyRef Name="Itemname"/></Key><Property Name="Itemname" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Item Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Shopname" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Shop Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Price" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Price of item" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Quantity" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Quantity of Product" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="ZITEMSBASICType" sap:label="Basic view for items" sap:content-version="1">
+				<Key><PropertyRef Name="ItemName"/></Key><Property Name="ItemName" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Item Name" sap:quickinfo="Name of the item"/><Property Name="ShopName" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Shop Name"
+					sap:quickinfo="Name of the shop"/><Property Name="Quantity" Type="Edm.Int16" sap:label="Quantity of Product" sap:quickinfo="Quantity of Ordered Product"/><Property Name="Price" Type="Edm.Int16" sap:label="Item Price" sap:quickinfo="Price of the item in the shop"/></EntityType>
+			<EntityType Name="ZSHOPITEMSMANIPULATIONType" sap:label="Manipulating ZShopWithItems" sap:content-version="1">
+				<Key><PropertyRef Name="Shop"/></Key><Property Name="Shop" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Shop Name" sap:quickinfo="Name of the shop"/><Property Name="Manager" Type="Edm.String" MaxLength="30" sap:label="Manager Name" sap:quickinfo="Name of manager"/><Property Name="Employees" Type="Edm.Int16" sap:label="Employees" sap:quickinfo="Number of employees in the shop"/><Property Name="Revenue" Type="Edm.Int16" sap:label="Revenue" sap:quickinfo="Revenue for the shop"/><NavigationProperty Name="to_Item" Relationship="ZKPMGSHOP_SRV.assoc_E61886A997E26204116D825C0C467CEB"
+					FromRole="FromRole_assoc_E61886A997E26204116D825C0C467CEB" ToRole="ToRole_assoc_E61886A997E26204116D825C0C467CEB"/></EntityType>
+			<EntityType Name="ZSHOPWITHITEMSType" sap:label="Association view ZSHOPS and ZITEMS" sap:content-version="1">
+				<Key><PropertyRef Name="Shop"/></Key><Property Name="Shop" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Shop Name" sap:quickinfo="Name of the shop"/><Property Name="Manager" Type="Edm.String" MaxLength="30" sap:label="Manager Name" sap:quickinfo="Name of manager"/><Property Name="Employees" Type="Edm.Int16" sap:label="Employees" sap:quickinfo="Number of employees in the shop"/><Property Name="Revenue" Type="Edm.Int16" sap:label="Revenue" sap:quickinfo="Revenue for the shop"/><NavigationProperty Name="to_ItemBasic" Relationship="ZKPMGSHOP_SRV.assoc_8962BF2C40A84DA4F465B2A5BF46ACEA"
+					FromRole="FromRole_assoc_8962BF2C40A84DA4F465B2A5BF46ACEA" ToRole="ToRole_assoc_8962BF2C40A84DA4F465B2A5BF46ACEA"/></EntityType>
+			<ComplexType Name="CheckShopName"><Property Name="ShopName" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Shop Name" sap:creatable="false"
+				sap:updatable="false" sap:sortable="false" sap:filterable="false"/></ComplexType>
+			<Association Name="assoc_8962BF2C40A84DA4F465B2A5BF46ACEA" sap:content-version="1"><End Type="ZKPMGSHOP_SRV.ZSHOPWITHITEMSType" Multiplicity="1" Role="FromRole_assoc_8962BF2C40A84DA4F465B2A5BF46ACEA"/><End Type="ZKPMGSHOP_SRV.ZITEMSBASICType" Multiplicity="*" Role="ToRole_assoc_8962BF2C40A84DA4F465B2A5BF46ACEA"/></Association>
+			<Association Name="assoc_E61886A997E26204116D825C0C467CEB" sap:content-version="1">
+				<End Type="ZKPMGSHOP_SRV.ZSHOPITEMSMANIPULATIONType" Multiplicity="1" Role="FromRole_assoc_E61886A997E26204116D825C0C467CEB"><OnDelete Action="Cascade"/></End><End Type="ZKPMGSHOP_SRV.ZITEMSBASICType" Multiplicity="*" Role="ToRole_assoc_E61886A997E26204116D825C0C467CEB"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_assoc_E61886A997E26204116D825C0C467CEB"><PropertyRef Name="Shop"/></Principal>
+					<Dependent Role="ToRole_assoc_E61886A997E26204116D825C0C467CEB"><PropertyRef Name="ShopName"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ShopsItems" sap:content-version="1"><End Type="ZKPMGSHOP_SRV.Shops" Multiplicity="1" Role="FromRole_ShopsItems"/><End Type="ZKPMGSHOP_SRV.Items" Multiplicity="*" Role="ToRole_ShopsItems"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ShopsItems"><PropertyRef Name="Shop"/></Principal>
+					<Dependent Role="ToRole_ShopsItems"><PropertyRef Name="Shopname"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZKPMGSHOP_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="ZITEMSBASIC" EntityType="ZKPMGSHOP_SRV.ZITEMSBASICType" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:content-version="1"/><EntitySet Name="ZSHOPITEMSMANIPULATION" EntityType="ZKPMGSHOP_SRV.ZSHOPITEMSMANIPULATIONType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="ZSHOPWITHITEMS" EntityType="ZKPMGSHOP_SRV.ZSHOPWITHITEMSType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="ShopsSet" EntityType="ZKPMGSHOP_SRV.Shops" sap:pageable="false" sap:content-version="1"/><EntitySet Name="ItemsSet" EntityType="ZKPMGSHOP_SRV.Items" sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="assoc_E61886A997E26204116D825C0C467CEB" Association="ZKPMGSHOP_SRV.assoc_E61886A997E26204116D825C0C467CEB"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZSHOPITEMSMANIPULATION" Role="FromRole_assoc_E61886A997E26204116D825C0C467CEB"/><End EntitySet="ZITEMSBASIC" Role="ToRole_assoc_E61886A997E26204116D825C0C467CEB"/></AssociationSet>
+				<AssociationSet Name="assoc_8962BF2C40A84DA4F465B2A5BF46ACEA" Association="ZKPMGSHOP_SRV.assoc_8962BF2C40A84DA4F465B2A5BF46ACEA"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZSHOPWITHITEMS" Role="FromRole_assoc_8962BF2C40A84DA4F465B2A5BF46ACEA"/><End EntitySet="ZITEMSBASIC" Role="ToRole_assoc_8962BF2C40A84DA4F465B2A5BF46ACEA"/></AssociationSet>
+				<AssociationSet Name="ShopsItemsSet" Association="ZKPMGSHOP_SRV.ShopsItems" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="ShopsSet" Role="FromRole_ShopsItems"/><End EntitySet="ItemsSet" Role="ToRole_ShopsItems"/></AssociationSet>
+				<FunctionImport Name="Shop" ReturnType="ZKPMGSHOP_SRV.CheckShopName" m:HttpMethod="POST"><Parameter Name="NameOfShop" Type="Edm.String" Mode="In"/></FunctionImport>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZKPMGSHOP_SRV.ZKPMGSHOP_SRV_Entities">
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZKPMGSHOP_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZKPMGSHOP_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

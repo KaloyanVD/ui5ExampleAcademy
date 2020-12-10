@@ -1,0 +1,17 @@
+<mvc:View controllerName="Exercise4.Exercise4.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+			<Page id="page" title="App">
+					<content>
+						<VBox fitContainer="true">
+							<List headerText="Shops" items="{ path: 'shopModel>/ShopsSet' }">
+								<StandardListItem title="{shopModel>Name}" type="Navigation" press=".onPress"/>
+							</List>
+						</VBox>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
